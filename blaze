@@ -21,8 +21,6 @@ deps() {
 	printf "\n"
 	printf "\033[32mOptional dependencies\033[0m\n"
 	printf " - \033[32mnotify-send\033[0m    Letting the user know when the recording starts/ends\n"
-	printf "\n"
-	exit 1
 }
 
 # check all necessary dependencies
@@ -32,7 +30,7 @@ _ dmenu            || deps="$deps dmenu"
 _ ffmpeg           || deps="$deps ffmpeg"
 _ xrandr || _ slop || deps="$deps xorg-xrandr/slop"
 
-[ "$deps" ] && deps "$deps"
+[ "$deps" ] && { deps "$deps"; exit 1; }
 
 # menu to use
 m() { ${DMENU:-dmenu} "$@"; }
@@ -201,9 +199,6 @@ fi
 # ask the user what they want the framerate of the video to be
 [ ! "$rate" ] && rate="$(printf "30\n60" | m -p "Framerate")"
 
-# detect if the user has a nvidia card and use nvenc
-[ ! "$nvenc" ] && lspci | grep -qi nvidia && nvenc="-vcodec h264_nvenc"
-
 # ask the user if they want to start the recording
 [ ! "$ready" ] && ready="$(printf "yes\nno" | m -p "Start the recording")"
 
@@ -247,7 +242,6 @@ EOF
 	  -i "$DISPLAY.0+$offX,$offY"  \
 	  $bitrate                     \
 	  -pix_fmt yuv420p             \
-	  $nvenc                       \
 	  -q:v 0                       \
 	  "$output" &
 

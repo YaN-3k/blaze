@@ -1,5 +1,3 @@
-My fork of https://github.com/GaugeK/blaze
-
 Options
   -s / --save        End the recording
   -h / --help        Display what you're reading right now
@@ -30,3 +28,5 @@ Variables
 
   BLAZE_SLOP   Options to use for slop
     Default:     None
+
+My fork of https://github.com/GaugeK/blaze

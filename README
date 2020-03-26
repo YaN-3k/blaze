@@ -28,5 +28,3 @@ Variables
 
   BLAZE_SLOP   Options to use for slop
     Default:     None
-
-My fork of https://github.com/GaugeK/blaze

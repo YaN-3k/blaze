@@ -1,22 +1,22 @@
 Options
-  -o     [] Specify the output file
-  -s        End the recording
-  -h        Display what you're reading right now
-  -d        printf dependencies
-  -c        Don't ask if the user is ready to record
-  -p     [] Save to and load from preset <x>
-  -r     [] Force framerate
-  -b     [] Force bitrate  (in MB)
-  -m     [] Force method   (slop, display)
-  -d     [] Force display  (Doesn't require -m)
-  -n        Force disable NVENC
-  -S        Options to use for slop (Needs to be quoted)
-  -a        Record desktop audio
+  -o        [] Specify the output file
+  -s           End the recording
+  -h           Display what you're reading right now
+  -d           printf dependencies
+  -c           Don't ask if the user is ready to record
+  -p        [] Save to and load from preset <x>
+  -r        [] Force framerate
+  -b        [] Force bitrate  (in MB)
+  -m        [] Force method   (slop, display)
+  -d        [] Force display  (Doesn't require -m)
+  -n           Force disable NVENC
+  -S           Options to use for slop (Needs to be quoted)
+  -a           Record desktop audio
 
 To select an area, install 'slop',
 to select a display, install 'xorg-xrandr'
 
-[] = Option requires a value
+[] = Option requires an argument
 
 Variables
   BLAZE_DIR    Location to save the video

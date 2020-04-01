@@ -64,9 +64,9 @@ save() {
 		# kill with SIGTERM, allowing finishing touches.
 		kill -15 "$recpid"
 		rm -f /tmp/blaze-pid
-		echo "Recording Stopped"
 		# even after SIGTERM, ffmpeg may still run, so SIGKILL it.
 		( sleep 3; kill -9 "$recpid" ) >/dev/null 2>&1 &
+		echo "Recording Stopped"
 		notify-send -t 2000 "Recording Stopped"
 		exit
 	else
@@ -78,24 +78,24 @@ save() {
 
 help() {
 	printf "\033[34mOptions\033[0m\n"
-	printf "  \033[34m-o\033[0m     \033[35m[]\033[0m Specify the output file\n"
-	printf "  \033[34m-s\033[0m        End the recording\n"
-	printf "  \033[34m-h\033[0m        Display what you're reading right now\n"
-	printf "  \033[34m-d\033[0m        printf dependencies\n"
-	printf "  \033[34m-c\033[0m        Don't ask if the user is ready to record\n"
-	printf "  \033[34m-p\033[0m     \033[35m[]\033[0m Save to and load from preset <x>\n"
-	printf "  \033[34m-r\033[0m     \033[35m[]\033[0m Force framerate\n"
-	printf "  \033[34m-b\033[0m     \033[35m[]\033[0m Force bitrate  (in MB)\n"
-	printf "  \033[34m-m\033[0m     \033[35m[]\033[0m Force method   (slop, display)\n"
-	printf "  \033[34m-d\033[0m     \033[35m[]\033[0m Force display  (Doesn't require -m)\n"
-	printf "  \033[34m-n\033[0m        Force disable NVENC\n"
-	printf "  \033[34m-S\033[0m        Options to use for slop (Needs to be quoted)\n"
-	printf "  \033[34m-a\033[0m        Record desktop audio\n"
+	printf "  \033[34m-o\033[0m        \033[35m[]\033[0m Specify the output file\n"
+	printf "  \033[34m-s\033[0m           End the recording\n"
+	printf "  \033[34m-h\033[0m           Display what you're reading right now\n"
+	printf "  \033[34m-d\033[0m           printf dependencies\n"
+	printf "  \033[34m-c\033[0m           Don't ask if the user is ready to record\n"
+	printf "  \033[34m-p\033[0m        \033[35m[]\033[0m Save to and load from preset <x>\n"
+	printf "  \033[34m-r\033[0m        \033[35m[]\033[0m Force framerate\n"
+	printf "  \033[34m-b\033[0m        \033[35m[]\033[0m Force bitrate  (in MB)\n"
+	printf "  \033[34m-m\033[0m        \033[35m[]\033[0m Force method   (slop, display)\n"
+	printf "  \033[34m-d\033[0m        \033[35m[]\033[0m Force display  (Doesn't require -m)\n"
+	printf "  \033[34m-n\033[0m           Force disable NVENC\n"
+	printf "  \033[34m-S\033[0m           Options to use for slop (Needs to be quoted)\n"
+	printf "  \033[34m-a\033[0m           Record desktop audio\n"
 	printf "\n"
 	printf "To select an area, install 'slop',\n"
 	printf "to select a display, install 'xorg-xrandr'\n"
 	printf "\n"
-	printf "\033[35m[]\033[0m = Option requires a value\n"
+	printf "\033[35m[]\033[0m = Option requires an argument\n"
 	printf "\n"
 	printf "\033[34mVariables\033[0m\n"
 	printf "  \033[34mBLAZE_DIR\033[0m    Location to save the video\n"
@@ -138,8 +138,6 @@ while getopts ':hdscb:m:r:nD:S:p:ao:' opt; do
 		a)
 			audio;;
 		o)
-			echo "$OPTARG"
-			echo "tak"
 			output="$OPTARG";;
 		\?)
 			echo "Invalid Option: -$OPTARG" 1>&2

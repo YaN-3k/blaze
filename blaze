@@ -226,6 +226,7 @@ fi
 
 # ask the user what they want the framerate of the video to be
 [ ! "$rate" ] && rate="$(printf "30\n60" | m -p "Framerate")"
+[ ! "$rate" ] && exit
 
 # ask the user if they want to start the recording
 [ ! "$ready" ] && ready="$(printf "yes\nno" | m -p "Start the recording")"
